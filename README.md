@@ -13,5 +13,10 @@ There a few things I didn't implement:
 
 ## Known Bugs
 There a few known bugs:
-1. inifinate loader after clicking on "generate mock data" button - it works, just need to refresh the page.
+1. Inifinate loader after clicking on "generate mock data" button - it works, just need to refresh the page.
 2. After deleting a record, the list does not being updated - need to refresh.
+
+## Run instructions
+1. Clone the repo.
+2. run "npm install" and then "npm start" in both promotions_manager/backend and promotions_manager/frontend folders.
+3. NOTE: the backend should run on port 3001.
