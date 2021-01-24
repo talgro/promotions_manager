@@ -1,0 +1,15 @@
+html, body, #root, #root>div {
+  height: 100%
+}
+
+html {
+  font-family: sans-serif;
+  font-weight: lighter;
+  height: 100%
+}
+
+body {
+  margin: 0;
+  height: 100%
+
+}

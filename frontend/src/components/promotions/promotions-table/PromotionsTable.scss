@@ -1,0 +1,57 @@
+@import "src/styles/main";
+
+.loader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 50vh;
+}
+
+.promotions-table-wrapper {
+  .mock-button {
+    margin-bottom: 10px;
+  }
+
+  .table-component {
+    display: flex;
+    flex-direction: column;
+    //flex: 1;
+    height: 70vh;
+
+    .promotions-table {
+      //flex: 1;
+      overflow-y: auto;
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+
+        th, td {
+          padding: 8px 16px;
+          text-align: start;
+
+          &.actions-menu-td {
+            width: 20%;
+          }
+        }
+
+        th {
+          background: #eee;
+          color: $background-light;
+          font-weight: lighter;
+        }
+
+        tr {
+          box-shadow: 0 0 2px $background-lightest;
+        }
+      }
+    }
+
+    .promotions-table thead th {
+      position: sticky;
+      top: 0;
+    }
+  }
+}

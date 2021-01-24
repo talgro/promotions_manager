@@ -1,0 +1,10 @@
+.promotions-screen {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 16px;
+
+  .promotions-table-container {
+    height: 70%;
+  }
+}

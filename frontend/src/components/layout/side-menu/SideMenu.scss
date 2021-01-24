@@ -1,0 +1,10 @@
+@import "src/styles/main";
+$width-percentage: 15%;
+
+.side-menu{
+  display: flex;
+  width: $width-percentage;
+  border-right: $background-light;
+  border-right-style: solid;
+  border-right-width: 1px;
+}
