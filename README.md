@@ -1,10 +1,10 @@
 ## Description
 This Repository includes both backend and frontend of a bi-directinal infinate-scrollable list.
 Technologies involved:
-*MongoDB - document database/n
-*Express(TS) - Node.js web framework
-*React(TS) - a client-side JavaScript framework
-*Node(TS) - the premier JavaScript web server
+1. MongoDB - document database
+2. Express(TS) - Node.js web framework
+3. React(TS) - a client-side JavaScript framework
+4. Node(TS) - the premier JavaScript web server
 
 ## Leftovers
 There a few things I didn't implement:
