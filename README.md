@@ -1,5 +1,5 @@
 ## Description
-This Repository includes both backend and frontend of a bi-directinal infinate-scrollable list.
+This repository includes both backend and frontend of a bi-directinal infinate-scrollable list.
 Technologies involved:
 1. MongoDB - document database
 2. Express(TS) - Node.js web framework
@@ -7,7 +7,7 @@ Technologies involved:
 4. Node(TS) - the premier JavaScript web server
 
 ## Leftovers
-There a few things I didn't implement:
+There are a few things I didn't implement:
 1. Edit or duplicate a record (delete action was implemented).
 2. Semantics - parsing the dates, styling the action buttons a little prettier.
 
