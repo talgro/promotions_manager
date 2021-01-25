@@ -17,7 +17,7 @@ const ActionsMenu: React.FC<ActionsMenuProps> = ({
     const dispatch = useDispatch();
 
     const openEditDialog = () => {
-
+        //s
     };
 
     const openDuplicateDialog = () => {
@@ -32,13 +32,14 @@ const ActionsMenu: React.FC<ActionsMenuProps> = ({
         setCurrentEditedRecordsKey(promotionId);
     };
 
-    return promotionId === currentEditedPromotionId ?
-        (<div className="actions-menu">
-            <button onClick={openEditDialog}>Edit</button>
-            <button onClick={openDuplicateDialog}>Duplicate</button>
-            <button onClick={deleteRecord}>Delete</button>
-        </div>) :
-        (<button onClick={showActions}>Actions</button>)
+    const isSelected = promotionId == currentEditedPromotionId;
+    return (
+        <div className="actions-menu">
+            <button onClick={isSelected ? openEditDialog : showActions}>{isSelected ? "Edit" : "Actions"}</button>
+            <button onClick={openDuplicateDialog} style={{opacity: isSelected ? 1 : 0}}>Duplicate</button>
+            <button onClick={deleteRecord} style={{opacity: isSelected ? 1 : 0}}>Delete</button>
+        </div>
+    );
 };
 
 

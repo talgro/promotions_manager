@@ -35,16 +35,22 @@
           &.actions-menu-td {
             width: 20%;
           }
+
         }
 
         th {
           background: #eee;
           color: $background-light;
           font-weight: lighter;
+
+          .actions-col{
+            width: 15%;
+          }
         }
 
         tr {
-          box-shadow: 0 0 2px $background-lightest;
+          height: 40px;
+          box-shadow: 0 0 1.5px $background-lightest;
         }
       }
     }
@@ -54,4 +60,9 @@
       top: 0;
     }
   }
+}
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+  border-color: #D7B1D7;
+  background-color: #D7B1D7;
 }

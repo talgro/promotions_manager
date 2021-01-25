@@ -25,7 +25,11 @@ export type SetFetchingPreviousRecordsActionData = {
 }
 
 export type FillDbMockDataActionData = {
-    type: PromotionActionTypes.FILL_DB_MOCK_DATA
+    type: PromotionActionTypes.FILL_DB_MOCK_DATA,
+    payload: {
+        promotionFields: string[],
+        promotions: Promotion[]
+    }
 }
 
 export type GetInitialRecordsActionData = {

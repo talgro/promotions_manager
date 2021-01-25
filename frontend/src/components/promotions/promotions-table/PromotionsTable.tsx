@@ -55,7 +55,10 @@ const PromotionsTable: React.FC = () => {
     };
 
     return isFetchingInitialRecords ?
-        (<div className="loader"><ClipLoader/></div>) :
+        (<div className="loader">
+            <ClipLoader/>
+            This action can take a minutes or two...
+        </div>) :
         (
             <div className="promotions-table-wrapper">
                 <button className="mock-button" onClick={fillDbWithMockData}>
@@ -67,9 +70,11 @@ const PromotionsTable: React.FC = () => {
                             <thead>
                             {/* table headers */}
                             <tr>
-                                {/*<th> /!* placeholder for checkboxes column *!/ </th>*/}
-                                {promotionFields.map(field => (<th key={field}>{field}</th>))}
-                                <th> {/* placeholder for actions column */} </th>
+                                {promotionFields.map(field => (
+                                    <th style={{width: `${(1 / promotionFields.length) * 85}%`}}
+                                        key={field}>{field}</th>
+                                ))}
+                                <th className="actions-col"> {/* placeholder for actions column */} </th>
                             </tr>
                             </thead>
                             <tbody>

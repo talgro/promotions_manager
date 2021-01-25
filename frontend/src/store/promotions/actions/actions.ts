@@ -9,6 +9,7 @@ import {
 import {Action} from "redux";
 import {Promotion, PromotionsState} from "../types";
 import backendApi from "../api";
+import {InitialPromotionsDataDto} from "../api/dto";
 
 type PromotionsThunk = ThunkAction<void, PromotionsState, unknown, Action<any>>
 
@@ -28,11 +29,11 @@ const fillDbWithMockData = (): PromotionsThunk =>
     async dispatch => {
         try {
             dispatch(setFetchingInitialRecords());
-            await backendApi.fillDbWithMockData();
-            const dto = await backendApi.getInitialPromotions();
 
-            dispatch<GetInitialRecordsActionData>({
-                type: PromotionActionTypes.GET_INITIAL_PROMOTIONS,
+            const dto: InitialPromotionsDataDto = await backendApi.fillDbWithMockData();
+
+            dispatch<FillDbMockDataActionData>({
+                type: PromotionActionTypes.FILL_DB_MOCK_DATA,
                 payload: {
                     promotionFields: dto.fields,
                     promotions: dto.records
@@ -95,6 +96,7 @@ const deletePromotion = (promotionId: string): PromotionsThunk =>
             });
         } catch (e) {
             // todo: add handler
+            console.log("error in deletePromotion", e);
         }
     };
 

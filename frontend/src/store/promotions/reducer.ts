@@ -1,6 +1,6 @@
 import {Promotion, PromotionsState} from "./types";
 import {
-    DeleteRecordActionData,
+    DeleteRecordActionData, FillDbMockDataActionData,
     GetInitialRecordsActionData,
     GetPartialRecordsActionData,
     PromotionActionsData,
@@ -37,9 +37,11 @@ const promotionsReducer = (state: PromotionsState = initialState, action: Promot
             };
 
         case PromotionActionTypes.FILL_DB_MOCK_DATA:
+            const fillDbMockDataPayload = (action as FillDbMockDataActionData).payload;
             return {
                 ...state,
-                promotions: [],
+                promotionFields: fillDbMockDataPayload.promotionFields,
+                promotions: fillDbMockDataPayload.promotions,
                 isFetchingInitialRecords: false
             };
 
