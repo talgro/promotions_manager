@@ -1,9 +1,11 @@
-export type PromotionRecordDto = {
-    pid: string,
-    [k: string]: any
+
+type PromotionDto = {
+    pid: number
+    name: string,
+    type: string,
+    startDate: Date,
+    endDate: Date,
+    userGroupName: string
 }
 
-export interface InitialPromotionsDataDto {
-    fields: string[];
-    records: PromotionRecordDto[];
-}
+export default PromotionDto;

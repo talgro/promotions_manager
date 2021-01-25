@@ -1,9 +1,6 @@
-export type PromotionRecordDto = {
-    pid: string,
-    [k: string]: any
-}
+import PromotionDto from "./PromotionDto";
 
-export interface InitialPromotionsDataDto {
+export default interface InitialPromotionsDataDto {
     fields: string[];
-    records: PromotionRecordDto[];
+    records: PromotionDto[];
 }

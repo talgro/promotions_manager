@@ -1,23 +1,23 @@
-import {IPromotion, Promotion, promotionsSchema} from "./models/Promotion";
-import InitialPromotionsData from "./models/InitialPromotionsData";
-
-const INITIAL_PROMOTION_SIZE: number = 50;
-const NOCK_DATA_SIZE: number = 10000;
-const PARTIAL_PROMOTIONS_SIZE: number = 10;
-
-const getInitialPromotions = async (): Promise<InitialPromotionsData> => {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.deletePromotion = exports.fillDbWithMockData = void 0;
+const Promotion_1 = require("./models/Promotion");
+const INITIAL_PROMOTION_SIZE = 50;
+const NOCK_DATA_SIZE = 10000;
+const PARTIAL_PROMOTIONS_SIZE = 10;
+const getInitialPromotions = async () => {
     // Fetch <INITIAL_PROMOTION_SIZE> first records
     try {
-        const initialPromotions: IPromotion[] =
-            await Promotion
-                .find({})
-                .sort({pid: 1})
-                .limit(INITIAL_PROMOTION_SIZE);
+        const initialPromotions = await Promotion_1.Promotion
+            .find({})
+            .sort({ pid: 1 })
+            .limit(INITIAL_PROMOTION_SIZE);
         return {
-            fields: Object.keys(promotionsSchema),
+            fields: Object.keys(Promotion_1.promotionsSchema),
             records: initialPromotions
         };
-    } catch (e) {
+    }
+    catch (e) {
         // todo: handle error
         console.log("error in getInitialPromotions", e);
         return {
@@ -26,18 +26,18 @@ const getInitialPromotions = async (): Promise<InitialPromotionsData> => {
         };
     }
 };
-
-const getPartialPromotions = async (fromRecordKey: number, getPrevious: boolean): Promise<IPromotion[]> => {
-    let partialPromotions: IPromotion[] = [];
+const getPartialPromotions = async (fromRecordKey, getPrevious) => {
+    let partialPromotions = [];
     if (getPrevious) {
-        partialPromotions = await Promotion
+        partialPromotions = await Promotion_1.Promotion
             .find({})
             .where('pid')
             .lt(fromRecordKey)
             .gte(fromRecordKey - PARTIAL_PROMOTIONS_SIZE)
             .limit(PARTIAL_PROMOTIONS_SIZE);
-    } else {
-        partialPromotions = await Promotion
+    }
+    else {
+        partialPromotions = await Promotion_1.Promotion
             .find({})
             .where('pid')
             .gt(fromRecordKey)
@@ -45,24 +45,19 @@ const getPartialPromotions = async (fromRecordKey: number, getPrevious: boolean)
     }
     return partialPromotions;
 };
-
-export const fillDbWithMockData = async (): Promise<void> => {
+const fillDbWithMockData = async () => {
     try {
         // Drop collection
-        await Promotion.deleteMany({});
-
+        await Promotion_1.Promotion.deleteMany({});
         // Generate new Records
-        const getRandomDate =
-            (start: Date, end: Date) => new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
-
-        const newRecords: IPromotion[] = [...Array(NOCK_DATA_SIZE).keys()].map(i => {
+        const getRandomDate = (start, end) => new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+        const newRecords = [...Array(NOCK_DATA_SIZE).keys()].map(i => {
             const randomPromotionName = `promotion-${Math.floor(Math.random() * 200)}`;
             const randomType = ["Basic", "Common", "Epic"][Math.floor(Math.random() * 3)];
             const randomStartDate = getRandomDate(new Date(2015, 1, 1), new Date());
             const randomEndDate = getRandomDate(randomStartDate, new Date());
             const randomUserGroupName = `promotion-${Math.floor(Math.random() * 200)}`;
-
-            return new Promotion({
+            return new Promotion_1.Promotion({
                 pid: i,
                 name: randomPromotionName,
                 type: randomType,
@@ -71,24 +66,24 @@ export const fillDbWithMockData = async (): Promise<void> => {
                 userGroupName: randomUserGroupName
             });
         });
-
         // Recreate collection with newly generated records
-        await Promotion.insertMany(newRecords);
-    } catch (e) {
+        await Promotion_1.Promotion.insertMany(newRecords);
+    }
+    catch (e) {
         // todo: handle error
         console.log("error in fillDbWithMockData", e);
     }
 };
-
-export const deletePromotion = async (pid: number) => {
-    await Promotion
-        .find({pid: pid})
+exports.fillDbWithMockData = fillDbWithMockData;
+const deletePromotion = async (pid) => {
+    await Promotion_1.Promotion
+        .find({ pid: pid })
         .remove();
 };
-
-export default {
+exports.deletePromotion = deletePromotion;
+exports.default = {
     getInitialPromotions,
     getPartialPromotions,
-    fillDbWithMockData,
-    deletePromotion
-}
+    fillDbWithMockData: exports.fillDbWithMockData,
+    deletePromotion: exports.deletePromotion
+};

@@ -1,6 +1,6 @@
-import {PromotionDto} from "./PromotionDto";
+import {IPromotion} from "./Promotion";
 
-export default interface InitialPromotionsDataDto {
+export default interface InitialPromotionsData {
     fields: string[];
-    records: PromotionDto[];
+    records: IPromotion[];
 }
